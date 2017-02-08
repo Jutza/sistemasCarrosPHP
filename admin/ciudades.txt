@@ -1,0 +1,141 @@
+CREATE TABLE `admin` (
+  `id_adm` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_adm` varchar(45) COLLATE utf8_unicode_ci NOT NULL,
+  `username` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `ubica` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id_adm`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+INSERT INTO `admin` VALUES (1,'bernardo','bernardo','e10adc3949ba59abbe56e057f20f883e','5.jpg');
+INSERT INTO `admin` VALUES (2,'Ghazali','ghazali','a7b0175aa46d84f8ecc5c2973b2887e7','4.jpg');
+INSERT INTO `admin` VALUES (3,'Bernardo Prado','Berny','123456','3.jpg');
+INSERT INTO `admin` VALUES (4,'Pollito Chicken','Pollolo','123','2.jpg');
+INSERT INTO `admin` VALUES (5,'Bernardo Prado Diaz','Profesor','123','6.jpg');
+
+CREATE TABLE `ciudad` (
+  `id_ciu` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nomb_ciu` varchar(30) NOT NULL,
+  PRIMARY KEY (`id_ciu`),
+  UNIQUE KEY `unique_ciu` (`nomb_ciu`)
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `ciudad` VALUES (1,'Hermosillo');
+INSERT INTO `ciudad` VALUES (2,'Cd. Obregon');
+INSERT INTO `ciudad` VALUES (3,'Nogales');
+INSERT INTO `ciudad` VALUES (4,'Guaymas');
+INSERT INTO `ciudad` VALUES (5,'Navojoa');
+INSERT INTO `ciudad` VALUES (8,'tangas');
+INSERT INTO `ciudad` VALUES (9,'Tangamandapio');
+INSERT INTO `ciudad` VALUES (11,'Yecora Mixx');
+INSERT INTO `ciudad` VALUES (12,'HOLA');
+
+CREATE TABLE `clientes` (
+  `cli` bigint(20) NOT NULL AUTO_INCREMENT,
+  `nomb_cli` varchar(20) NOT NULL,
+  `ap_cli` varchar(20) NOT NULL,
+  `am_cli` varchar(20) NOT NULL,
+  `calle_cli` varchar(20) NOT NULL,
+  `numc_cli` int(5) NOT NULL,
+  `colonia_cli` varchar(20) NOT NULL,
+  `cp_cli` int(6) NOT NULL,
+  `id_ciuf` bigint(20) NOT NULL,
+  `limcredito` decimal(15,2) NOT NULL,
+  PRIMARY KEY (`cli`),
+  UNIQUE KEY `unique_napamcnc` (`nomb_cli`,`ap_cli`,`am_cli`,`calle_cli`,`numc_cli`,`colonia_cli`),
+  KEY `fk_cli_ciu` (`id_ciuf`)
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+INSERT INTO `clientes` VALUES (1,'Luis','Gomez','Fuentes','calle 3',342,'apolo',23100,1,3000);
+INSERT INTO `clientes` VALUES (2,'Ana','Garcia','Hirales','calle 7',622,'bugambilias',32542,3,4000);
+INSERT INTO `clientes` VALUES (3,'Juan','Ruiz','Santos','calle 5',8954,'Ranchito',23020,1,2000);
+INSERT INTO `clientes` VALUES (4,'Alma','Perez','Cano','calle 3',623,'Lopez Portillo',56412,5,3000);
+INSERT INTO `clientes` VALUES (5,'Luis','Robles','Mendez','calle 3',42,'Martina',10254,1,5000);
+INSERT INTO `clientes` VALUES (6,'Alfredo','Baez','Diaz','calle 19',76,'Manita Sagrada',56478,2,35000);
+INSERT INTO `clientes` VALUES (8,'bernardo','prados','diazs','mision de buquivabas',194,'bachocos',8314891,8,57000);
+INSERT INTO `clientes` VALUES (9,'bernardo','prado','garza','mision de buquivaba',21,'bachoco',83148,11,56000);
+INSERT INTO `clientes` VALUES (15,'fer','pa','sr','de',23,'ve',34,1,56);
+INSERT INTO `clientes` VALUES (18,'nina','sala','mera','sino',52,'para',5848,4,56898);
+INSERT INTO `clientes` VALUES (20,'saul','cazarez','montomayor','heraua',897,'tara',89745,8,56444);
+INSERT INTO `clientes` VALUES (21,'bernardo','prado','dae','mision de buquivaba ',14,'bachoco',83148,5,3333);
+INSERT INTO `clientes` VALUES (22,'erwr','ewrw','ewrew','ewrwe',34,'rewwe',34,5,3242);
+INSERT INTO `clientes` VALUES (23,'ererrrr','ererr','ere444','ere',455,'fgfgfg',4554,1,55656);
+INSERT INTO `clientes` VALUES (25,'rreret','rtytry','ytutyut','werewr',78,'sdfdsf',4354,1,5654);
+
+
+CREATE TABLE `detalles` (
+  `det` bigint(20) NOT NULL AUTO_INCREMENT,
+  `foliof` bigint(20) DEFAULT NULL,
+  `prodf` bigint(20) DEFAULT NULL,
+  `cantidad` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`det`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+INSERT INTO `detalles` VALUES (1,1,1,2);
+INSERT INTO `detalles` VALUES (2,1,2,2);
+INSERT INTO `detalles` VALUES (3,1,3,2);
+INSERT INTO `detalles` VALUES (4,2,1,2);
+INSERT INTO `detalles` VALUES (5,2,2,2);
+INSERT INTO `detalles` VALUES (6,3,1,2);
+INSERT INTO `detalles` VALUES (7,4,3,2);
+INSERT INTO `detalles` VALUES (8,5,2,2);
+INSERT INTO `detalles` VALUES (9,6,2,2);
+INSERT INTO `detalles` VALUES (10,7,1,2);
+INSERT INTO `detalles` VALUES (11,8,1,2);
+INSERT INTO `detalles` VALUES (12,8,4,2);
+INSERT INTO `detalles` VALUES (15,37,5,5);
+INSERT INTO `detalles` VALUES (16,37,5,5);
+INSERT INTO `detalles` VALUES (17,36,7,420);
+
+
+CREATE TABLE `facturas` (
+  `Folio` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Fecha` date DEFAULT NULL,
+  `acredito` tinyint(1) DEFAULT NULL,
+  `cli` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`Folio`),
+  KEY `cli` (`cli`)
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+
+INSERT INTO `facturas` VALUES (1,'2016-02-02',0,2);
+INSERT INTO `facturas` VALUES (2,'2008-02-01',1,1);
+INSERT INTO `facturas` VALUES (3,'2008-03-01',0,6);
+INSERT INTO `facturas` VALUES (4,'2008-04-01',0,3);
+INSERT INTO `facturas` VALUES (5,'2008-05-01',0,4);
+INSERT INTO `facturas` VALUES (6,'2008-06-01',1,5);
+INSERT INTO `facturas` VALUES (7,'2008-07-01',1,2);
+INSERT INTO `facturas` VALUES (8,'2008-08-01',1,1);
+INSERT INTO `facturas` VALUES (9,'2008-08-01',1,3);
+INSERT INTO `facturas` VALUES (12,'2014-05-11',0,5);
+INSERT INTO `facturas` VALUES (13,'2014-06-17',0,2);
+INSERT INTO `facturas` VALUES (32,'2016-06-20',0,1);
+INSERT INTO `facturas` VALUES (33,'2016-06-22',1,1);
+INSERT INTO `facturas` VALUES (34,'2016-06-08',0,1);
+INSERT INTO `facturas` VALUES (36,'2016-06-28',1,3);
+INSERT INTO `facturas` VALUES (37,'2016-06-23',0,1);
+
+CREATE TABLE `productos` (
+  `prod` bigint(20) NOT NULL AUTO_INCREMENT,
+  `producto` varchar(30) DEFAULT NULL,
+  `precio` decimal(15,2) DEFAULT NULL,
+  `existencia` bigint(20) DEFAULT NULL,
+  `reorden` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`prod`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+
+INSERT INTO `productos` VALUES (1,'bolsa',60,25,1);
+INSERT INTO `productos` VALUES (2,'botella',25,20,3);
+INSERT INTO `productos` VALUES (3,'frasco',300,50,5);
+INSERT INTO `productos` VALUES (4,'bote',20,66,2);
+INSERT INTO `productos` VALUES (5,'caja',32,30,6);
+INSERT INTO `productos` VALUES (7,'Jarro',80,480,100);
+INSERT INTO `productos` VALUES (8,'mesas',7000,1000,800);
+
+ALTER TABLE `clientes`
+ADD CONSTRAINT `fk_cli_ciu` FOREIGN KEY (`id_ciuf`) REFERENCES `ciudad` (`id_ciu`);
+
+ALTER TABLE `facturas`
+ADD CONSTRAINT `facturas_ibfk_1` FOREIGN KEY (`cli`) REFERENCES `clientes` (`cli`);
+
